@@ -12,7 +12,7 @@
                         <div class="Service-item-top">
                             <h4>{{item.title}}</h4>
                             <i></i>
-                            <p>{{item.eng_title}}</p>
+                            <p>{{item.engTit}}</p>
                         </div>
                         <div class="Service-item-img">
                             <img :src="item.img" alt="服务">
@@ -26,6 +26,8 @@
 </template>
 <script>
 import { WOW } from 'wowjs';
+import { apiGetRelative } from '../api/api';
+
 export default {
     name: 'Service',
     data(){
@@ -54,6 +56,13 @@ export default {
                 }
             ]
         }
+    },
+    created() {
+        apiGetRelative().then(res => {
+            if (res.code >= 0) {
+                this.$data.serviceList = res.data;
+            }
+        })
     },
     mounted(){
         var wow = new WOW();

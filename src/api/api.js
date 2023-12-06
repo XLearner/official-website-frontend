@@ -40,4 +40,11 @@ export const apiGetAdvantage = () => {
   }).then(filterRes);
 };
 
+export const apiGetRecruit = () => {
+  return request({
+    url: `${baseURL}/v1/get/recruit`,
+    method: "get"
+  }).then(filterRes);
+};
+
 export default {};
