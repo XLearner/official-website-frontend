@@ -9,30 +9,60 @@
               <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-10 col-xs-12">
-                  <input type="text" class="form-control" id="name" placeholder="请输入名字">
+                  <input
+                    v-model="form.name"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="请输入名字"
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="email" placeholder="请输入邮箱">
+                  <input
+                    v-model="form.email"
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    placeholder="请输入邮箱"
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-sm-2 control-label">电话</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="tel" placeholder="请输入电话">
+                  <input
+                    v-model="form.tel"
+                    type="text"
+                    class="form-control"
+                    id="tel"
+                    placeholder="请输入电话"
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <label for="content" class="col-sm-2 control-label">内容</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="content" rows="8" placeholder="请输入内容"></textarea>
+                  <textarea
+                    v-model="form.content"
+                    class="form-control"
+                    id="content"
+                    rows="8"
+                    placeholder="请输入内容"
+                  ></textarea>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default btn-block">提交</button>
+                  <button
+                    type="button"
+                    class="btn btn-default btn-block"
+                    @click="submit"
+                  >
+                    提交
+                  </button>
                 </div>
               </div>
             </form>
@@ -46,16 +76,25 @@
   </div>
 </template>
 <script>
-import { WOW } from 'wowjs'
+import { WOW } from "wowjs";
 import BMap from "BMap";
+import { apiSubmitContact } from "../api/api";
+
 export default {
   name: "ContactUs",
   data() {
-    return {};
+    return {
+      form: {
+        name: "",
+        email: "",
+        tel: "",
+        content: ""
+      }
+    };
   },
   mounted() {
     var map = new BMap.Map("map"); // 创建地图实例
-    var point = new BMap.Point(106.619600, 26.656531); // 创建点坐标
+    var point = new BMap.Point(106.6196, 26.656531); // 创建点坐标
     map.centerAndZoom(point, 18); // 初始化地图，设置中心点坐标和地图级别
     map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
     var marker = new BMap.Marker(point); // 创建标注
@@ -65,13 +104,20 @@ export default {
       height: 10, // 信息窗口高度
       title: "贵州中瀚物流服务有限公司" // 信息窗口标题
     };
-    var infoWindow = new BMap.InfoWindow(
-      "腾祥迈德国际A3栋8层3号",
-      opts
-    ); // 创建信息窗口对象
+    var infoWindow = new BMap.InfoWindow("腾祥迈德国际A3栋8层3号", opts); // 创建信息窗口对象
     map.openInfoWindow(infoWindow, map.getCenter()); // 打开信息窗口
     var wow = new WOW();
     wow.init();
+  },
+  methods: {
+    submit() {
+      console.log('first')
+      if (Object.values(this.form).includes("")) {
+        alert("参数填写不完整");
+        return;
+      }
+      apiSubmitContact(this.form).then(res => {});
+    }
   }
 };
 </script>
@@ -106,4 +152,3 @@ export default {
   }
 }
 </style>
-
