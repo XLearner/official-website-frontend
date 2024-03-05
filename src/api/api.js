@@ -1,7 +1,8 @@
 import request from "./index";
 
-const baseURL = "http://43.139.70.11:8903";
+// const baseURL = "http://43.139.70.11:8903";
 // const baseURL = "http://localhost:8903";
+const baseURL = "http://www.zhonghanlogistics.cn:8903"
 const filterRes = res => res.status === 200 && res.data;
 
 export const apiGetBaseInfo = name => {

@@ -68,7 +68,9 @@
             </form>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6">
-            <div id="map" class="wow zoomIn"></div>
+            <div id="map" class="wow zoomIn">
+              <img src="../assets/img/company_address.png" />
+            </div>
           </div>
         </div>
       </div>
@@ -77,7 +79,7 @@
 </template>
 <script>
 import { WOW } from "wowjs";
-import BMap from "BMap";
+// import BMap from "BMap";
 import { apiSubmitContact } from "../api/api";
 
 export default {
@@ -93,25 +95,24 @@ export default {
     };
   },
   mounted() {
-    var map = new BMap.Map("map"); // 创建地图实例
-    var point = new BMap.Point(106.6196, 26.656531); // 创建点坐标
-    map.centerAndZoom(point, 18); // 初始化地图，设置中心点坐标和地图级别
-    map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-    var marker = new BMap.Marker(point); // 创建标注
-    map.addOverlay(marker); // 将标注添加到地图中
+    // var map = new BMap.Map("map"); // 创建地图实例
+    // var point = new BMap.Point(106.6196, 26.656531); // 创建点坐标
+    // map.centerAndZoom(point, 18); // 初始化地图，设置中心点坐标和地图级别
+    // map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+    // var marker = new BMap.Marker(point); // 创建标注
+    // map.addOverlay(marker); // 将标注添加到地图中
     var opts = {
       width: 50, // 信息窗口宽度
       height: 10, // 信息窗口高度
       title: "贵州中瀚物流服务有限公司" // 信息窗口标题
     };
-    var infoWindow = new BMap.InfoWindow("腾祥迈德国际A3栋8层3号", opts); // 创建信息窗口对象
-    map.openInfoWindow(infoWindow, map.getCenter()); // 打开信息窗口
+    // var infoWindow = new BMap.InfoWindow("腾祥迈德国际A3栋8层3号", opts); // 创建信息窗口对象
+    // map.openInfoWindow(infoWindow, map.getCenter()); // 打开信息窗口
     var wow = new WOW();
     wow.init();
   },
   methods: {
     submit() {
-      console.log('first')
       if (Object.values(this.form).includes("")) {
         alert("参数填写不完整");
         return;
@@ -141,6 +142,11 @@ export default {
 #map {
   width: 100%;
   height: 365px;
+  overflow: hidden;
+}
+#map img {
+  display: block;
+  transform: translate(-220px, -175px);
 }
 .row {
   margin-right: 0;

@@ -13,8 +13,12 @@
       <span>邮箱：{{ baseInfo.email }}</span>
     </p>
     <p class="copy">
-      {{ baseInfo.copyright }} 2018 -
-      {{ new Date().getFullYear() }} 贵州中瀚物流服务有限公司
+      <a href="https://beian.miit.gov.cn" target="_blank">黔ICP备2023017099号</a>
+
+      <span>
+        {{ baseInfo.copyright }} 2018 -
+        {{ new Date().getFullYear() }} 贵州中瀚物流服务有限公司
+      </span>
     </p>
   </div>
 </template>
