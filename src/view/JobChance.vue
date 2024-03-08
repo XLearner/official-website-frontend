@@ -2,6 +2,9 @@
   <div id="JobChance">
     <div class="banner container-fuild text-center">工作机会</div>
     <div class="container">
+      <div v-if="recruitList.length == 0" class="null-job">
+        <span>暂无招聘需求</span>
+      </div>
       <div class="JobChance-container wow pulse" v-for="item in recruitList">
         <h2>{{ item.name }}</h2>
         <p class="stit">岗位职责</p>
@@ -13,10 +16,7 @@
           <p v-for="i in item.requirement.split('\n')">{{ i }}</p>
         </div>
 
-        <button
-          class="center-block btn btn-warning btn-lg"
-          @click="() => submitRecruit(item.name)"
-        >
+        <button class="center-block btn btn-warning btn-lg" @click="() => submitRecruit(item.name)">
           投递简历
         </button>
       </div>
@@ -70,30 +70,47 @@ export default {
   background-attachment: scroll;
   background-position: center center;
 }
+
+.container {
+  min-height: 500px;
+}
+
+.null-job {
+  text-align: center;
+  padding: 100px 0;
+  color: #555;
+  font-size: 20px;
+}
+
 .JobChance-container {
   margin: 100px;
   padding: 30px;
   transition: all ease 0.5s;
   border: 1px dashed salmon;
 }
+
 .JobChance-container h2 {
   color: rgb(255, 102, 19);
   font-weight: bolder;
   text-align: center;
 }
+
 .JobChance-container .stit {
   font-size: 20px;
   color: rgb(255, 102, 19);
   font-weight: 700;
 }
+
 .JobChance-container ol {
   list-style-type: decimal;
   padding-left: 30px;
 }
-.JobChance-container ol > li {
+
+.JobChance-container ol>li {
   font-size: 14px;
   line-height: 2.7rem;
 }
+
 @media screen and (max-width: 997px) {
   .JobChance-container {
     margin: 20px 0;

@@ -44,13 +44,13 @@
             {{ item.title }}
             <small>/ {{ item.engTit }}</small>
           </h2>
-          <p>{{ item.description }}</p>
+          <p class="description">{{ item.description }}</p>
           <div>
             <span class="see-details" @click="seeDetails">查看详情>></span>
           </div>
         </div>
       </div>
-      <div class="more text-center" @click="seeMore">
+      <div class="more text-center" @click="seeMoreService">
         <span>查看更多>></span>
       </div>
     </div>
@@ -166,7 +166,9 @@
           <div class="txt-container">
             <div class="title">{{ baseInfo.name }}</div>
             <div class="txt">{{ baseInfo.description }}</div>
-            <div class="detail-btn">查看详情</div>
+            <div class="detail-btn">
+              <span @click="seeMoreCompanyInfo">查看详情</span>
+            </div>
           </div>
           <div class="img-box">
             <img :src="baseInfo.descImg" alt="公司图片" />
@@ -340,8 +342,11 @@ export default {
     seeDetails() {
       this.$router.push("/servicedetail");
     },
-    seeMore() {
+    seeMoreService() {
       this.$router.push("/service");
+    },
+    seeMoreCompanyInfo() {
+      this.$router.push("companyintroduction");
     }
   }
 };
@@ -356,16 +361,20 @@ export default {
 #swiper {
   height: 600px;
 }
+
 #swiper .banner-swiper {
   width: 100%;
   height: 100%;
 }
+
 #swiper .banner-swiper .swiper-slide img {
   width: 100%;
 }
+
 #swiper .banner-swiper .swiper-slide {
   position: relative;
 }
+
 #swiper .banner-swiper .swiper-slide-title {
   position: absolute;
   top: 0;
@@ -378,61 +387,80 @@ export default {
   text-align: center;
   line-height: 80px;
 }
+
 #swiper .banner-swiper .swiper-slide-title > h1 {
   font-size: 50px;
   margin-top: 12%;
 }
+
 #swiper .banner-swiper .swiper-slide-title > p {
   font-size: 20px;
   margin-top: 1%;
   font-weight: 700;
 }
+
 /* 大数据管理系统 */
 #ourService {
   padding: 100px;
   transition: all ease 0.6s;
   box-sizing: border-box;
 }
+
 #ourService .title {
   margin-bottom: 50px;
 }
+
 .ourService-container {
   margin-bottom: 80px;
   display: flex;
   align-items: center;
 }
+
 .ourService-container.revert {
   flex-flow: row-reverse;
 }
+
 .ourService-container .see-details {
   cursor: pointer;
 }
+
 #ourService .ourService-img {
   box-sizing: border-box;
   padding: 0 70px;
 }
+
 #ourService .ourService-title {
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
 }
+
 #ourService p {
   font-size: 14px;
   color: #333;
   line-height: 2rem;
 }
+
+#ourService .description {
+  height: 7em;
+  overflow: hidden;
+}
+
 #ourService .title p:nth-child(1) {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
 }
+
 #ourService .title p:nth-child(2) {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 10px;
 }
+
 #ourService .ourService-device {
   margin: 50px 0 20px;
 }
+
 #ourService .more {
   cursor: pointer;
   font-size: 16px;
@@ -446,28 +474,34 @@ export default {
   background-size: 100% 100%;
   transition: all ease 0.6s;
 }
+
 #contactUs .contactUs-container {
   padding-top: 50px;
 }
+
 #contactUs .contactUs-container button {
   width: 300px;
   height: 50px;
   margin-top: 40px;
 }
+
 #contactUs .contactUs-container .contactUs-contactWay span {
   display: inline-block;
   width: 48px;
   height: 48px;
   margin: 30px;
 }
+
 #contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(1) {
   background: url("../assets/img/weixin.png") 0 0 no-repeat;
   background-size: 100% 100%;
 }
+
 #contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(2) {
   background: url("../assets/img/weibo.png") 0 0 no-repeat;
   background-size: 100% 100%;
 }
+
 #contactUs .contactUs-container .contactUs-contactWay span:nth-of-type(3) {
   background: url("../assets/img/twitter.png") 0 0 no-repeat;
   background-size: 100% 100%;
@@ -480,61 +514,76 @@ export default {
   background: #efefef;
   transition: all ease 0.6s;
 }
+
 #customer .customer-title {
   font-size: 30px;
   color: rgb(102, 102, 102);
   margin: 0 0 30px;
 }
+
 #customer .customer-block {
   background: #fff;
   padding: 30px;
 }
+
 #customer .customer-logo img {
   height: 138px;
   border: 1px solid #ccc;
 }
+
 #customer .customer-yh img {
   width: 34px;
   height: 34px;
 }
+
 #customer .customer-content1 {
   padding-bottom: 20px;
   border-bottom: 1px solid #0ce9f1;
 }
+
 #customer .customer-content2 {
   padding-top: 20px;
 }
+
 /* 为什么选择我们 */
 #whyChooseUs {
   padding: 100px;
 }
+
 #whyChooseUs .row {
   display: flex;
 }
+
 #whyChooseUs .whyChooseUs-title {
   margin-bottom: 50px;
 }
+
 #whyChooseUs .whyChooseUs-title p:nth-of-type(1) {
   font-size: 30px;
   font-weight: 500;
 }
+
 #whyChooseUs .whyChooseUs-title p:nth-of-type(2) {
   font-size: 14px;
 }
+
 #whyChooseUs .server-block {
   padding: 50px 20px;
   border: 1px solid #ccc;
   border-bottom: 5px solid #ccc;
   height: 100%;
 }
+
 #whyChooseUs .server-block img {
   /* width: 48px; */
   height: 100px;
 }
+
 #whyChooseUs .server-block > p {
   font-size: 20px;
   margin: 30px 0;
 }
+
 #whyChooseUs .server-block > div {
   color: #ccc;
 }
@@ -543,19 +592,24 @@ export default {
   background: #efefef;
   padding: 100px;
 }
+
 #AboutUs .AboutUs-title p {
   margin-bottom: 10px;
 }
+
 #AboutUs .AboutUs-title {
   margin-bottom: 50px;
 }
+
 #AboutUs .AboutUs-title p:nth-of-type(1) {
   font-size: 30px;
   font-weight: 500;
 }
+
 #AboutUs .AboutUs-title p:nth-of-type(2) {
   font-size: 14px;
 }
+
 #AboutUs .content-box {
   display: flex;
   box-shadow: 0 0 10px #cdcdcd;
@@ -563,11 +617,13 @@ export default {
   border-radius: 5px;
   overflow: hidden;
 }
+
 #AboutUs .txt-container {
   width: 40%;
   box-sizing: border-box;
   padding: 30px;
 }
+
 #AboutUs .txt-container .title {
   font-weight: 700;
   margin-top: 10px;
@@ -577,6 +633,7 @@ export default {
   border-bottom: 1px #cdcdcd solid;
   position: relative;
 }
+
 #AboutUs .txt-container .txt {
   color: #999;
   line-height: 2;
@@ -589,11 +646,15 @@ export default {
   word-wrap: break-word;
   height: 200px;
 }
+
 #AboutUs .img-box {
   width: 60%;
   border-left: 1px solid #cdcdcd;
   overflow: hidden;
   height: 380px;
+}
+#AboutUs .detail-btn span {
+  cursor: pointer;
 }
 
 /* 媒体查询（手机） */
@@ -601,93 +662,117 @@ export default {
   #swiper {
     height: 200px;
   }
+
   #swiper .banner-swiper .swiper-slide-title > h1 {
     font-size: 3rem;
   }
+
   #swiper .banner-swiper .swiper-slide-title > p {
     font-size: 1.75rem;
     line-height: 1.6;
   }
+
   #ourService {
     padding: 30px;
   }
+
   #ourService .ourService-img {
     padding: 0;
   }
+
   #ourService .ourService-title {
     font-size: 20px;
   }
+
   #ourService .ourService-device {
     font-size: 20px;
     margin: 10px 0 10px;
   }
+
   #contactUs {
     height: 200px;
     transition: all ease 0.6s;
   }
+
   #contactUs .contactUs-container {
     padding-top: 0;
   }
+
   #contactUs .contactUs-container h1 {
     font-size: 25px;
   }
+
   #contactUs .contactUs-container h3 {
     font-size: 18px;
   }
+
   #contactUs .contactUs-container button {
     width: 200px;
     height: 30px;
     margin-top: 20px;
   }
+
   #contactUs .contactUs-container .contactUs-contactWay span {
     display: inline-block;
     width: 28px;
     height: 28px;
     margin: 10px;
   }
+
   #customer {
     padding: 30px 0;
     box-sizing: border-box;
     background: #fff;
   }
+
   #customer .customer-title {
     font-size: 16px;
     font-weight: bold;
   }
+
   #customer .customer-logo img {
     width: 48px;
     height: 48px;
   }
+
   #customer .customer-block {
     padding: 30px;
   }
+
   #customer .customer-block > div {
     padding: 30px 0;
   }
+
   #whyChooseUs {
     padding: 20px 0;
     transition: all ease 0.6s;
   }
+
   #whyChooseUs .whyChooseUs-title p:nth-of-type(1) {
     font-size: 20px;
     font-weight: 700;
   }
+
   #whyChooseUs .whyChooseUs-title p:nth-of-type(2) {
     font-size: 12px;
   }
+
   #whyChooseUs .server-block {
     padding: 50px 0;
     border: 1px solid #ccc;
     border-bottom: 5px solid #ccc;
   }
+
   #whyChooseUs .server-block img {
     width: 48px;
     height: 48px;
   }
+
   #whyChooseUs .server-block > p {
     font-size: 20px;
     margin: 30px 0;
   }
+
   #whyChooseUs .server-block > div {
     color: #ccc;
   }
@@ -702,45 +787,57 @@ export default {
   #swiper {
     height: 400px;
   }
+
   #ourService {
     padding: 60px;
   }
+
   #ourService .ourService-img {
     padding: 0;
   }
+
   #ourService .ourService-title {
     font-size: 30px;
   }
+
   #ourService .ourService-device {
     font-size: 30px;
     margin: 30px 0 15px;
   }
+
   #contactUs {
     height: 300px;
   }
+
   #contactUs .contactUs-container {
     padding-top: 50px;
   }
+
   #contactUs .contactUs-container h1 {
     font-size: 30px;
   }
+
   #contactUs .contactUs-container h3 {
     font-size: 20px;
   }
+
   #contactUs .contactUs-container button {
     width: 300px;
     height: 50px;
     margin-top: 30px;
   }
+
   #contactUs .contactUs-container .contactUs-contactWay span {
     display: inline-block;
     width: 32px;
     height: 32px;
     margin: 15px;
   }
+
   #customer .customer-title {
     font-size: 24px;
   }
+
   #whyChooseUs {
     padding: 20px 0;
   }
