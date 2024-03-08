@@ -7,17 +7,17 @@
             </div>
             <div class="nav container text-center">
                 <a href="#" class="active">公司新闻</a>
-                <a href="#">行业动态</a>
+                <!-- <a href="#">行业动态</a> -->
             </div>
             <ul class="news-container container-fuild">
-                <li v-for="(item,index) in newsList" :key="index" class="wow fadeIn">
+                <li v-for="(item, index) in newsList" :key="index" class="wow fadeIn">
                     <div class="content">
-                        <p>{{item.title}}</p>
-                        <p>{{item.introduce}}</p>
+                        <p class="title">{{ item.title }}</p>
+                        <p>{{ item.introduce }}</p>
                     </div>
                     <div class="time">
-                        <p>{{item.date}}</p>
-                        <span>{{item.year}}</span>
+                        <p>{{ item.date }}</p>
+                        <span>{{ item.year }}</span>
                     </div>
                     <div class="circle">
                         <img src="../assets/img/circle.png">
@@ -33,62 +33,52 @@
 </template>
 <script>
 import { WOW } from 'wowjs';
+import { apiGetNews } from '../api/api';
+
 export default {
     name: 'NewsInformation',
-    data(){
-        return{
-            newsList:[
-                {
-                    id: '001',
-                    title: '世界上第一个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第四份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                },{
-                    id: '002',
-                    title: '世界上第二个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第四份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                },{
-                    id: '003',
-                    title: '世界上第三个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第四份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                },{
-                    id: '004',
-                    title: '世界上第四个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第四份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                },{
-                    id: '005',
-                    title: '世界上第五个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第五份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                },{
-                    id: '006',
-                    title: '世界上第六个程序员',
-                    introduce: '为计算程序拟定“算法”，写作的第五份“程序设计流程图”，被珍视为“第一位给计算机',
-                    date: '05-24',
-                    year: '2019'
-                }
+    data() {
+        return {
+            newsList: [
             ]
         }
     },
-    mounted(){
+    mounted() {
         var wow = new WOW();
         wow.init();
     },
+    created() {
+        apiGetNews().then(res => {
+            // console.log('news ', res)
+            this.$data.newsList = res.data.map(e => {
+                return this.handle(e);
+            })
+        })
+    },
+    methods: {
+        handle(data) {
+            let date = data.date;
+            const year = date.slice(0, 4);
+            const dateRest = date.slice(4);
+            const len = dateRest.length;
+            const month = (len == 2 || len == 3) ? dateRest.slice(0, 1) : len == 4 ? dateRest.slice(0, 2) : '0';
+            return {
+                id: data.id,
+                title: data.title,
+                introduce: data.description,
+                date: `${month.toString().padStart(2, 0)}月`,
+                year,
+            }
+        }
+    }
 }
 </script>
 <style scoped>
-.nav{
+.nav {
     margin: 20px 0;
 }
-.nav>a{
+
+.nav>a {
     display: inline-block;
     text-decoration: none;
     width: 120px;
@@ -97,19 +87,23 @@ export default {
     color: #333;
     border: 1px solid #333;
 }
-.nav>a.active{
+
+.nav>a.active {
     color: #1e73be;
     border-color: #1e73be;
 }
-.nav>a:hover{
+
+.nav>a:hover {
     color: #1e73be;
     border-color: #1e73be;
 }
-.news-container{
+
+.news-container {
     overflow: hidden;
     margin-bottom: 0;
 }
-.news-container>li{
+
+.news-container>li {
     width: 55.6%;
     height: 120px;
     float: left;
@@ -118,36 +112,46 @@ export default {
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
 }
-.news-container>li:hover{
+
+.news-container>li:hover {
     color: #1e73be;
     border: 1px solid #1e73be;
     cursor: pointer;
 }
-.news-container>li:nth-of-type(2n){
+
+.news-container>li:nth-of-type(2n) {
     float: right;
     text-align: left;
 }
-.news-container>li>.content{
+
+.news-container>li>.content {
     width: 60%;
     float: left;
     padding: 20px 0;
 }
-.news-container>li>.time{
+.news-container>li>.content .title {
+    font-size: 1.2em;
+}
+
+.news-container>li>.time {
     width: 20%;
     float: left;
     padding: 10px 0;
 }
-.news-container>li>.time>p{
+
+.news-container>li>.time>p {
     font-size: 30px;
     margin: 5px 0;
 }
-.news-container>li>.circle{
+
+.news-container>li>.circle {
     width: 20%;
     height: 100%;
     float: left;
     position: relative;
 }
-.news-container>li>.circle>img{
+
+.news-container>li>.circle>img {
     position: absolute;
     top: 0;
     left: 0;
@@ -157,51 +161,61 @@ export default {
     width: 20px;
     height: 20px;
 }
-.news-container>li>.circle>i{
+
+.news-container>li>.circle>i {
     display: block;
     width: 1px;
     height: 100%;
     background: #707070;
 }
-.news-container>li:nth-of-type(2n)>.content{
+
+.news-container>li:nth-of-type(2n)>.content {
     float: right;
 }
-.news-container>li:nth-of-type(2n)>.time{
+
+.news-container>li:nth-of-type(2n)>.time {
     float: right;
 }
-.news-container>li:nth-of-type(2n)>.circle{
+
+.news-container>li:nth-of-type(2n)>.circle {
     float: right;
 }
-.news-container>li:nth-of-type(1)>.circle>i{
+
+.news-container>li:nth-of-type(1)>.circle>i {
     height: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
 }
-.more{
+
+.more {
     font-size: 25px;
     color: #707070;
 }
-.more>i{
+
+.more>i {
     cursor: pointer;
 }
-@media screen and (max-width: 767px){
-    .news-container>li{
+
+@media screen and (max-width: 767px) {
+    .news-container>li {
         width: 100%;
     }
-    .news-container>li>.content{
+
+    .news-container>li>.content {
         width: 70%;
         text-align: left;
         float: right;
     }
-    .news-container>li>.time{
+
+    .news-container>li>.time {
         width: 30%;
         text-align: left;
         float: right;
     }
-    .news-container>li>.circle{
+
+    .news-container>li>.circle {
         display: none;
     }
 }
 </style>
-
