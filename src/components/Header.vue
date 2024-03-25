@@ -6,8 +6,7 @@
       <div class="container">
         <div class="server pull-left">
           <span class="glyphicon glyphicon-earphone"></span>{{ baseInfo.tel }}
-          <span class="glyphicon glyphicon-envelope"></span
-          >{{ baseInfo.email }}
+          <span class="glyphicon glyphicon-envelope"></span>{{ baseInfo.email }}
           <!-- <span class="glyphicon glyphicon-time"></span>7x24小时为您服务 -->
         </div>
         <!-- <div class="shejiao pull-right">
@@ -24,18 +23,11 @@
       </div>
       <!-- 导航内容 -->
       <ul class="header-nav-wrapper">
-        <li
-          v-for="(item, index) in navList"
-          :key="index"
-          :class="index == navIndex ? 'active' : ''"
-          @click="navClick(index, item.name)"
-        >
+        <li v-for="(item, index) in navList" :key="index" :class="index == navIndex ? 'active' : ''"
+          @click="navClick(index, item.name)">
           <router-link :to="item.path">
             {{ item.name }}
-            <span
-              v-if="item.children.length > 0"
-              class="glyphicon glyphicon-menu-down"
-            ></span>
+            <span v-if="item.children.length > 0" class="glyphicon glyphicon-menu-down"></span>
             <i class="underline"></i>
           </router-link>
           <dl v-if="item.children.length > 0">
@@ -49,33 +41,18 @@
     <!-- 手机导航 -->
     <div class="header-nav-m container-fuild visible-xs">
       <div class="header-nav-m-logo">
-        <img
-          class="center-block"
-          src="@/assets/img/logo.png"
-          alt="logo"
-        />
+        <img class="center-block" src="@/assets/img/logo.png" alt="logo" />
       </div>
       <!-- 导航栏 -->
       <div class="header-nav-m-menu text-center">
         {{ menuName }}
-        <div
-          class="header-nav-m-menu-wrapper"
-          data-toggle="collapse"
-          data-target="#menu"
-          @click="menuClick"
-        >
+        <div class="header-nav-m-menu-wrapper" data-toggle="collapse" data-target="#menu" @click="menuClick">
           <span :class="menuClass"></span>
         </div>
         <!-- 导航内容 -->
         <ul id="menu" class="header-nav-m-wrapper collapse">
-          <li
-            v-for="(item, index) in navList"
-            :key="index"
-            :class="index == navIndex ? 'active' : ''"
-            @click="navClick(index, item.name)"
-            data-toggle="collapse"
-            data-target="#menu"
-          >
+          <li v-for="(item, index) in navList" :key="index" :class="index == navIndex ? 'active' : ''"
+            @click="navClick(index, item.name)" data-toggle="collapse" data-target="#menu">
             <router-link :to="item.path">
               {{ item.name }}
               <i class="underline"></i>
@@ -151,10 +128,6 @@ export default {
     }
   },
   mounted() {
-    // setTimeout(() => {
-    //   console.log(this.$store.state.baseInfo)
-    // }, 2000)
-    // this.$data.baseInfo = this.$store.state.baseInfo;
   },
   methods: {
     navClick(index, name) {
@@ -178,6 +151,7 @@ export default {
   background: #f4f4f4;
   transition: all ease 0.6s;
 }
+
 #header .header-top {
   height: 50px;
   color: #fff;
@@ -185,14 +159,17 @@ export default {
   line-height: 50px;
   background: #f48a12;
 }
+
 /* 顶部的图标 */
 #header .header-top span {
   margin: 0 8px;
 }
+
 /* 导航栏 */
 #header .header-nav {
   height: 110px;
 }
+
 /* 导航栏logo */
 #header .header-nav .header-nav-logo {
   display: flex;
@@ -200,37 +177,43 @@ export default {
   float: left;
   position: relative;
 }
+
 /* 导航栏logo图片 */
 #header .header-nav .header-nav-logo img {
   height: 45px;
   margin: auto;
 }
+
 /* 导航栏 导航容器 */
 #header .header-nav-fixed .header-nav-wrapper {
   line-height: 50px;
 }
+
 #header .header-nav .header-nav-wrapper {
   line-height: 110px;
   float: right;
   margin: 0;
   max-width: 800px;
 }
+
 /* 导航栏 每个导航 */
-#header .header-nav .header-nav-wrapper > li {
+#header .header-nav .header-nav-wrapper>li {
   float: left;
   margin: 0 15px;
   position: relative;
 }
+
 /* 导航栏 每个导航下面的 a 链接 */
-#header .header-nav .header-nav-wrapper > li > a {
+#header .header-nav .header-nav-wrapper>li>a {
   color: #000;
   font-size: 15px;
   font-weight: bold;
   padding: 15px 0;
   position: relative;
 }
+
 /* 导航栏 每个导航下面的 a 链接的下划线 */
-#header .header-nav .header-nav-wrapper > li > a > i {
+#header .header-nav .header-nav-wrapper>li>a>i {
   display: block;
   position: absolute;
   bottom: -2px;
@@ -241,34 +224,40 @@ export default {
   transition: all 0.6s ease;
   background-color: #1e73be;
 }
+
 /* 导航栏 每个导航下面的 a 链接的右侧小三角 */
-#header .header-nav .header-nav-wrapper > li > a > span {
+#header .header-nav .header-nav-wrapper>li>a>span {
   font-size: 12px;
   transition: transform ease 0.5s;
 }
+
 /* 导航栏 每个导航下面的 a 链接 鼠标滑上去的样式 */
-#header .header-nav .header-nav-wrapper > li > a:hover {
+#header .header-nav .header-nav-wrapper>li>a:hover {
   color: #1e73be;
   text-decoration: none;
 }
+
 /* 导航栏 每个导航下面的 a 链接 鼠标滑上去下划线的样式 */
-#header .header-nav .header-nav-wrapper > li > a:hover .underline {
+#header .header-nav .header-nav-wrapper>li>a:hover .underline {
   opacity: 1;
   width: 100%;
   left: 0;
 }
+
 /* 导航栏 每个导航下面的 a 链接 鼠标滑上去三角标的样式 */
-#header .header-nav .header-nav-wrapper > li > a:hover span {
+#header .header-nav .header-nav-wrapper>li>a:hover span {
   transform: rotate(180deg);
 }
+
 /* 导航栏 每个导航下面的 a 链接 鼠标点击后的样式 */
-#header .header-nav .header-nav-wrapper > li.active > a {
+#header .header-nav .header-nav-wrapper>li.active>a {
   color: #1e73be;
   text-decoration: none;
   border-bottom: 2px solid #1e73be;
 }
+
 /* 导航栏 每个导航下面的二级导航容器 */
-#header .header-nav .header-nav-wrapper > li > dl {
+#header .header-nav .header-nav-wrapper>li>dl {
   display: none;
   position: absolute;
   width: 168px;
@@ -278,33 +267,40 @@ export default {
   box-shadow: 0 0 3px 1px #ccc;
   background: #fff;
 }
+
 /* 导航栏 每个导航下面的二级导航容器的每个导航 */
-#header .header-nav .header-nav-wrapper > li > dl > dt {
+#header .header-nav .header-nav-wrapper>li>dl>dt {
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid #ccc;
 }
+
 /* 导航栏 每个导航下面的二级导航容器的每个导航 当鼠标滑上时的样式*/
-#header .header-nav .header-nav-wrapper > li > dl > dt > a:hover {
+#header .header-nav .header-nav-wrapper>li>dl>dt>a:hover {
   text-decoration: none;
 }
+
 /* 导航栏 滑上一级导航显示二级导航 */
-#header .header-nav .header-nav-wrapper > li:hover dl {
+#header .header-nav .header-nav-wrapper>li:hover dl {
   display: block;
 }
-#header .header-nav .header-nav-wrapper > li > dl > dt:hover {
+
+#header .header-nav .header-nav-wrapper>li>dl>dt:hover {
   cursor: pointer;
   background: #ccc;
 }
+
 @media screen and (max-width: 997px) {
   #header .header-nav-m {
     position: relative;
   }
+
   /* 导航栏logo容器 */
   #header .header-nav-m .header-nav-m-logo {
     height: 80px;
     position: relative;
   }
+
   /* 导航栏logo图片 */
   #header .header-nav-m .header-nav-m-logo img {
     height: 45px;
@@ -315,6 +311,7 @@ export default {
     bottom: 0;
     margin: auto;
   }
+
   /* 导航栏  菜单容器 */
   #header .header-nav-m .header-nav-m-menu {
     color: #fff;
@@ -324,6 +321,7 @@ export default {
     background: #f48a12;
     position: relative;
   }
+
   /* 导航栏 菜单图标 */
   #header .header-nav-m .header-nav-m-menu-wrapper {
     position: absolute;
@@ -336,6 +334,7 @@ export default {
     z-index: 999999;
     font-size: 12px;
   }
+
   /* 导航栏 */
   #header .header-nav-m .header-nav-m-wrapper {
     position: absolute;
@@ -345,22 +344,25 @@ export default {
     background: #f48a12;
     z-index: 9999999;
   }
+
   /* 导航栏 每个导航 */
-  #header .header-nav-m .header-nav-m-wrapper > li {
+  #header .header-nav-m .header-nav-m-wrapper>li {
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #ccc;
   }
+
   /* 导航栏 每个导航下面的 a 链接 */
-  #header .header-nav-m .header-nav-m-wrapper > li > a {
+  #header .header-nav-m .header-nav-m-wrapper>li>a {
     color: #fff;
     font-size: 15px;
     font-weight: bold;
     padding: 15px 0;
     position: relative;
   }
+
   /* 导航栏 每个导航下面的 a 链接的右侧小三角 */
-  #header .header-nav .header-nav-wrapper > li > a > span {
+  #header .header-nav .header-nav-wrapper>li>a>span {
     font-size: 10px;
   }
 }

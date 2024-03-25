@@ -73,12 +73,13 @@ export default {
     },
     methods: {
         ServiceClick(id) {
-            this.$router.push({
-                name: 'servicedetail',
-                params: {
-                    id: id
-                }
-            })
+            // this.$router.push({
+            //     name: 'servicedetail',
+            //     params: {
+            //         id: id
+            //     }
+            // })
+            this.$router.push({ path: '/servicedetail/' + id})
         }
     }
 }

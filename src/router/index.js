@@ -87,10 +87,18 @@ export default new Router({
             title: '联系我们'
           }
         },
+        // {
+        //   path: '/servicedetail',
+        //   name: 'servicedetail',
+        //   component: resolve => require(['@/view/ServiceDetail'],resolve),
+        //   meta: {
+        //     title: '相关服务'
+        //   }
+        // }
         {
-          path: '/servicedetail',
+          path: '/servicedetail/:path',
           name: 'servicedetail',
-          component: resolve => require(['@/view/ServiceDetail'],resolve),
+          component: resolve => require(['@/view/ServiceSingleDetail'], resolve),
           meta: {
             title: '相关服务'
           }
