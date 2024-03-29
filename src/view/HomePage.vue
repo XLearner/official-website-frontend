@@ -46,7 +46,7 @@
           </h2>
           <p class="description" v-html="item.description"></p>
           <div>
-            <span class="see-details" @click="seeDetails">查看详情>></span>
+            <span class="see-details" @click="seeDetails(item.id)">查看详情>></span>
           </div>
         </div>
       </div>
@@ -339,8 +339,8 @@ export default {
     wow.init();
   },
   methods: {
-    seeDetails() {
-      this.$router.push("/servicedetail");
+    seeDetails(id) {
+      this.$router.push("/servicedetail/"+id);
     },
     seeMoreService() {
       this.$router.push("/service");
@@ -422,6 +422,7 @@ export default {
 
 .ourService-container .see-details {
   cursor: pointer;
+  color: rgb(71, 102, 177);
 }
 
 #ourService .ourService-img {
@@ -464,6 +465,7 @@ export default {
 #ourService .more {
   cursor: pointer;
   font-size: 16px;
+  color: rgb(71, 102, 177);
 }
 
 /* 您身边的IT专家 */
@@ -552,6 +554,11 @@ export default {
 
 #whyChooseUs .row {
   display: flex;
+  flex-flow: wrap;
+}
+
+#whyChooseUs .row > div {
+  margin-bottom: 20px;
 }
 
 #whyChooseUs .whyChooseUs-title {
@@ -652,6 +659,9 @@ export default {
   border-left: 1px solid #cdcdcd;
   overflow: hidden;
   height: 380px;
+}
+#AboutUs .img-box img {
+  height: 100%;
 }
 #AboutUs .detail-btn span {
   cursor: pointer;
@@ -758,7 +768,7 @@ export default {
   }
 
   #whyChooseUs .server-block {
-    padding: 50px 0;
+    padding: 50px 10px;
     border: 1px solid #ccc;
     border-bottom: 5px solid #ccc;
   }

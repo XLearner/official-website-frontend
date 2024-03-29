@@ -194,3 +194,11 @@ ul.nav-tabs.affix {
     max-width: 100%;
 }
 </style>
+
+<style>
+    
+#ServiceDetail .content-block ul, #ServiceDetail .content-block ol{
+    list-style: auto;
+    margin-left: 20px;
+}
+</style>

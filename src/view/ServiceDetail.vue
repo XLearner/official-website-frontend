@@ -130,6 +130,7 @@ export default {
   background-attachment: scroll;
   background-position: center center;
 }
+
 ul.nav-tabs {
   width: 200px;
   margin-top: 40px;
@@ -178,6 +179,8 @@ ul.nav-tabs.affix {
 }
 .content-block {
   margin: 50px 0;
+  list-style: decimal;
+
 }
 .content-block > h2 {
   padding: 20px 0;
