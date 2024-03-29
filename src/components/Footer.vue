@@ -3,7 +3,7 @@
     <div class="logo">
       <img src="@/assets/img/logo.jpg" alt="logo图" />
     </div>
-    <p class="title">贵州中瀚物流服务有限公司</p>
+    <p class="title">{{ baseInfo.name }}</p>
     <p class="address_tel_fax">
       <span>地址：{{ baseInfo.address }}</span>
       <br />
@@ -17,7 +17,7 @@
 
       <span>
         {{ baseInfo.copyright }} 2018 -
-        {{ new Date().getFullYear() }} 贵州中瀚物流服务有限公司
+        {{ new Date().getFullYear() }} {{ baseInfo.name }}
       </span>
     </p>
   </div>
