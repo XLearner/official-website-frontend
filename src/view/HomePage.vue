@@ -44,7 +44,7 @@
             {{ item.title }}
             <small>/ {{ item.engTit }}</small>
           </h2>
-          <p class="description">{{ item.description }}</p>
+          <p class="description" v-html="item.description"></p>
           <div>
             <span class="see-details" @click="seeDetails">查看详情>></span>
           </div>
@@ -437,7 +437,7 @@ export default {
 #ourService p {
   font-size: 14px;
   color: #333;
-  line-height: 2rem;
+  line-height: 3rem;
 }
 
 #ourService .description {

@@ -12,12 +12,13 @@
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9 content  wow zoomIn">
-                    <div class="content-block">
+                    <div class="content-block" v-show="ifShow">
                         <h2 :id="serviceItem.id">
                             {{ serviceItem.title }}
                             <small>/ {{ serviceItem.engTit }}</small>
                         </h2>
                         <div v-html="serviceItem.description"></div>
+                        <img :src="serviceItem.img" alt="示例图">
                     </div>
                 </div>
             </div>
@@ -33,6 +34,7 @@ export default {
     data() {
         return {
             id: "section-1",
+            ifShow: false,
             serviceNavList: [
                 // {
                 //   id: "section-1",
@@ -69,6 +71,7 @@ export default {
                 }));
                 this.$data.serviceContentList = res.data;
                 this.$data.serviceItem = res.data.filter(ele => ele.id == this.$route.params.path)[0];
+                this.showCtn();
             }
         });
     },
@@ -88,11 +91,19 @@ export default {
     },
     methods: {
         linkService(id) {
+            this.hideCtn();
             this.$router.push({ path: '/servicedetail/' + id });
             this.$data.serviceItem = this.serviceContentList.filter(ele => {
                 return ele.id == id
             })[0]
             this.$data.id = id;
+            this.showCtn();
+        },
+        showCtn() {
+            this.$data.ifShow = true;
+        },
+        hideCtn() {
+            this.$data.ifShow = false;
         }
     }
 };
@@ -177,5 +188,9 @@ ul.nav-tabs.affix {
 .content-block>h2 {
     padding: 20px 0;
     border-bottom: 1px solid #ccc;
+}
+
+.content-block img {
+    max-width: 100%;
 }
 </style>
