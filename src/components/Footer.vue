@@ -84,5 +84,8 @@ export default {
     font-size: 12px;
     margin: 30px 0 10px;
   }
+  #footer {
+    padding: 20px 20px 10px;
+  }
 }
 </style>
