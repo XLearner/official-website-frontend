@@ -368,7 +368,8 @@ export default {
 }
 
 #swiper .banner-swiper .swiper-slide img {
-  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #swiper .banner-swiper .swiper-slide {
@@ -774,13 +775,12 @@ export default {
   }
 
   #whyChooseUs .server-block img {
-    width: 48px;
-    height: 48px;
+    height: 100px;
   }
 
   #whyChooseUs .server-block > p {
     font-size: 20px;
-    margin: 30px 0;
+    margin: 8px 0;
   }
 
   #whyChooseUs .server-block > div {
@@ -789,6 +789,20 @@ export default {
 
   #AboutUs {
     padding: 20px 0;
+  }
+  #AboutUs .content-box {
+    flex-direction: column;
+  }
+  #AboutUs .txt-container {
+    width: 100%;
+  }
+  #AboutUs .txt-container .title {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+  #AboutUs .img-box {
+    width: 100%;
+    height: 300px
   }
 }
 
