@@ -176,6 +176,7 @@ export default {
   height: 100%;
   float: left;
   position: relative;
+  align-items: center;
 }
 
 /* 导航栏logo图片 */
