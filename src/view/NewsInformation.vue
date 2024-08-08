@@ -5,40 +5,52 @@
                 <h3>新闻动态</h3>
                 <p style="color:#b2b2b2">Company News</p>
             </div>
-            <div class="nav container text-center">
-                <a href="#" class="active">公司新闻</a>
-                <!-- <a href="#">行业动态</a> -->
+            <div class="container-fuild">
+                <div id="news_swiper" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(item, index) in topNews" :key="index">
+                            <img class="swiper-lazy img" :data-src="item.outImg" alt="轮播图" />
+                            <div class="swiper-lazy-preloader"></div>
+                            <div class="swiper-slide-title">
+                                <h1>{{ item.title }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- 如果需要导航按钮 -->
+                    <!-- <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div> -->
+                </div>
             </div>
-            <ul class="news-container container-fuild">
-                <li v-for="(item, index) in newsList" :key="index" class="wow fadeIn">
-                    <div class="content">
-                        <p class="title">{{ item.title }}</p>
-                        <p>{{ item.introduce }}</p>
+
+            <!-- 新闻列表 -->
+            <div class="news-container">
+                <div class="news-list">
+                    <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="toDetail(item.id)">
+                        <div class="img"><img :src="item.outImg" alt="img"></div>
+                        <div class="content">
+                            <div class="tit">{{ item.title }}</div>
+                            <div class="time">{{ item.time }}</div>
+                        </div>
                     </div>
-                    <div class="time">
-                        <p>{{ item.date }}</p>
-                        <span>{{ item.year }}</span>
-                    </div>
-                    <div class="circle">
-                        <img src="../assets/img/circle.png">
-                        <i class="line center-block"></i>
-                    </div>
-                </li>
-            </ul>
-            <div class="contaianer-fuild text-center more">
-                <i class="glyphicon glyphicon-th"></i>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script>
 import { WOW } from 'wowjs';
+import Swiper from "swiper";
 import { apiGetNews } from '../api/api';
 
 export default {
     name: 'NewsInformation',
     data() {
         return {
+            topNews: [
+            ],
             newsList: [
             ]
         }
@@ -48,144 +60,139 @@ export default {
         wow.init();
     },
     created() {
+        setTimeout(() => {
+            new Swiper("#news_swiper", {
+                loop: true, // 循环模式选项
+                //自动播放
+                autoplay: {
+                    delay: 5000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false
+                },
+                // 如果需要分页器
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                // 如果需要前进后退按钮
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                // 延迟加载
+                lazy: {
+                    // loadPrevNext: true
+                },
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true //修改swiper的父元素时，自动初始化swiper
+            });
+        }, 1000);
         apiGetNews().then(res => {
-            // console.log('news ', res)
-            this.$data.newsList = res.data.map(e => {
-                return this.handle(e);
-            })
+            const data = res.data.sort((a,b) => b.time - a.time)
+            let topNews = data.slice(0, 3).map(this.handle);
+            let newsList = data.slice(3).map(this.handle);
+            
+            this.$data.topNews = topNews;
+            this.$data.newsList = newsList;
         })
     },
     methods: {
         handle(data) {
-            let date = data.date;
+            let date = data.time;
             const year = date.slice(0, 4);
-            const dateRest = date.slice(4);
-            const len = dateRest.length;
-            const month = (len == 2 || len == 3) ? dateRest.slice(0, 1) : len == 4 ? dateRest.slice(0, 2) : '0';
+            const month = date.slice(4, 6);
+            const day = date.slice(6);
             return {
                 id: data.id,
                 title: data.title,
-                introduce: data.description,
-                date: `${month.toString().padStart(2, 0)}月`,
-                year,
+                content: data.content,
+                time: `${year}年${month}月${day}日`,
+                outImg: data.outImg,
             }
+        },
+        toDetail(id) {
+            this.$router.push({ path: '/news/' + id});
         }
     }
 }
 </script>
 <style scoped>
-.nav {
-    margin: 20px 0;
+#NewsInformation {
+    padding-bottom: 100px;
 }
 
-.nav>a {
-    display: inline-block;
-    text-decoration: none;
-    width: 120px;
-    height: 45px;
-    line-height: 45px;
-    color: #333;
-    border: 1px solid #333;
+.container-fuild {
+    margin-bottom: 50px;
 }
 
-.nav>a.active {
-    color: #1e73be;
-    border-color: #1e73be;
+.swiper-wrapper {
+    position: relative;
+    height: 500px;
 }
 
-.nav>a:hover {
-    color: #1e73be;
-    border-color: #1e73be;
+.swiper-slide {
+    display: flex;
+    align-items: center;
 }
+.swiper-slide .img {
+    display: block;
+    width: 100%;
+}
+
+.swiper-slide-title {
+    background: rgba(255, 255, 255, .6);
+    padding: 10px 8px 28px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 
 .news-container {
     overflow: hidden;
     margin-bottom: 0;
 }
 
-.news-container>li {
-    width: 55.6%;
-    height: 120px;
-    float: left;
-    color: #333;
-    text-align: right;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-
-.news-container>li:hover {
-    color: #1e73be;
-    border: 1px solid #1e73be;
+.news-container .news-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin: 20px 0;
+    border: 1px solid #efefef;
+    border-radius: 3px;
     cursor: pointer;
+    transition: all .7s;
 }
 
-.news-container>li:nth-of-type(2n) {
-    float: right;
-    text-align: left;
+.news-container .news-item:hover {
+    box-shadow: 0 0 5px #ddd;
 }
 
-.news-container>li>.content {
-    width: 60%;
-    float: left;
-    padding: 20px 0;
-}
-.news-container>li>.content .title {
-    font-size: 1.2em;
+.news-container .img {
+    width: 200px;
+    overflow: hidden;
+    margin-right: 10px;
 }
 
-.news-container>li>.time {
-    width: 20%;
-    float: left;
-    padding: 10px 0;
-}
-
-.news-container>li>.time>p {
-    font-size: 30px;
-    margin: 5px 0;
-}
-
-.news-container>li>.circle {
-    width: 20%;
-    height: 100%;
-    float: left;
-    position: relative;
-}
-
-.news-container>li>.circle>img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 20px;
-    height: 20px;
-}
-
-.news-container>li>.circle>i {
+.news-container .img img {
     display: block;
-    width: 1px;
-    height: 100%;
-    background: #707070;
+    width: 100%;
 }
 
-.news-container>li:nth-of-type(2n)>.content {
-    float: right;
+.news-container .content {
+    width: calc(100% - 200px);
+    line-height: 1.2;
 }
 
-.news-container>li:nth-of-type(2n)>.time {
-    float: right;
+.news-container .content .tit {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.news-container>li:nth-of-type(2n)>.circle {
-    float: right;
-}
-
-.news-container>li:nth-of-type(1)>.circle>i {
-    height: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.news-container .content .time {
+    font-size: 16px;
+    color: #aaa;
 }
 
 .more {
@@ -198,6 +205,11 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
+
+    .swiper-wrapper {
+        position: relative;
+        height: 30rem;
+    }
     .news-container>li {
         width: 100%;
     }
