@@ -102,7 +102,15 @@ export default new Router({
           meta: {
             title: '相关服务'
           }
-        }
+        },
+        {
+          path: '/news/:path',
+          name: 'newsdetail',
+          component: resolve => require(['@/view/NewsDetail'], resolve),
+          meta: {
+            title: '新闻详情'
+          }
+        },
       ]
     }
   ]
