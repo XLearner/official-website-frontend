@@ -8,7 +8,7 @@
             <div class="container-fuild">
                 <div id="news_swiper" class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="(item, index) in topNews" :key="index">
+                        <div class="swiper-slide" v-for="(item, index) in topNews" :key="index"  @click="toDetail(item.id)">
                             <img class="swiper-lazy img" :data-src="item.outImg" alt="轮播图" />
                             <div class="swiper-lazy-preloader"></div>
                             <div class="swiper-slide-title">
@@ -133,6 +133,7 @@ export default {
 .swiper-slide {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .swiper-slide .img {
     display: block;
@@ -228,6 +229,13 @@ export default {
 
     .news-container>li>.circle {
         display: none;
+    }
+
+    .swiper-slide-title h1 {
+        font-size: 2rem;
+    }
+    .news-container .content .tit {
+        font-size: 1.6rem;
     }
 }
 </style>
