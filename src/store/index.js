@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    baseInfo: {}
+    baseInfo: {},
+    navIndex: 0,
 }
 
 const mutations = {
     saveBaseInfo(state, payload) {
         state.baseInfo = payload
+    },
+    saveNavIndex(state, payload) {
+        state.navIndex = payload
     }
 }
 

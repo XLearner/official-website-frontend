@@ -12,8 +12,12 @@
             <img class="swiper-lazy" :data-src="item.img" alt="轮播图" />
             <div class="swiper-lazy-preloader"></div>
             <div class="swiper-slide-title">
-              <h1>{{ item.title }}</h1>
-              <p>{{ item.content }}</p>
+              <div class="txt container">
+                <h1>{{ item.title }}</h1>
+                <h2>{{ item.titleEng }}</h2>
+                <p>{{ item.content }}</p>
+                <p>{{ item.contentEng }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -198,26 +202,26 @@ export default {
       customerList: [],
       advantageList: [],
       serverList: [
-        {
-          logo: require("@/assets/img/tel.png"),
-          title: "核心优势1",
-          content: "<p>由专业客服提供人工服务</p>负责疑难问题和故障受理"
-        },
-        {
-          logo: require("@/assets/img/computer.png"),
-          title: "核心优势2",
-          content: "<p>利用远程视频工具，提供协助</p>帮助客户进行调试、解决故障"
-        },
-        {
-          logo: require("@/assets/img/qq.png"),
-          title: "核心优势3",
-          content: "<p>利用企业QQ提供在线解答</p>帮助企业快速准确解决问题和故障"
-        },
-        {
-          logo: require("@/assets/img/skill.png"),
-          title: "核心优势4",
-          content: "<p>由技术支持工程师，负责问题解答</p>需求受理及故障受理"
-        }
+        // {
+        //   logo: require("@/assets/img/tel.png"),
+        //   title: "核心优势1",
+        //   content: "<p>由专业客服提供人工服务</p>负责疑难问题和故障受理"
+        // },
+        // {
+        //   logo: require("@/assets/img/computer.png"),
+        //   title: "核心优势2",
+        //   content: "<p>利用远程视频工具，提供协助</p>帮助客户进行调试、解决故障"
+        // },
+        // {
+        //   logo: require("@/assets/img/qq.png"),
+        //   title: "核心优势3",
+        //   content: "<p>利用企业QQ提供在线解答</p>帮助企业快速准确解决问题和故障"
+        // },
+        // {
+        //   logo: require("@/assets/img/skill.png"),
+        //   title: "核心优势4",
+        //   content: "<p>由技术支持工程师，负责问题解答</p>需求受理及故障受理"
+        // }
       ]
     };
   },
@@ -249,7 +253,7 @@ export default {
           effect: "fade",
           //自动播放
           autoplay: {
-            delay: 3000,
+            delay: 8000,
             stopOnLastSlide: false,
             disableOnInteraction: false
           },
@@ -341,6 +345,8 @@ export default {
   methods: {
     seeDetails(id) {
       this.$router.push("/servicedetail/"+id);
+      sessionStorage.setItem("navIndex", 1);
+      this.$store.commit('saveNavIndex', 1);
     },
     seeMoreService() {
       this.$router.push("/service");
@@ -359,7 +365,7 @@ export default {
 
 /* 轮播图 */
 #swiper {
-  height: 600px;
+  height: 90vh;
 }
 
 #swiper .banner-swiper {
@@ -389,9 +395,13 @@ export default {
   line-height: 80px;
 }
 
-#swiper .banner-swiper .swiper-slide-title > h1 {
-  font-size: 50px;
-  margin-top: 12%;
+#swiper .banner-swiper .swiper-slide-title .txt {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  right: 0;
+  text-align: left;
+  margin: 0 auto;
 }
 
 #swiper .banner-swiper .swiper-slide-title > p {
@@ -674,11 +684,21 @@ export default {
     height: 200px;
   }
 
-  #swiper .banner-swiper .swiper-slide-title > h1 {
+  #swiper .banner-swiper .swiper-slide-title .txt {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.1;
+  }
+
+  #swiper .banner-swiper .swiper-slide-title .txt h1 {
     font-size: 3rem;
   }
 
-  #swiper .banner-swiper .swiper-slide-title > p {
+  #swiper .banner-swiper .swiper-slide-title .txt p {
     font-size: 1.75rem;
     line-height: 1.6;
   }
