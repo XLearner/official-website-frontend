@@ -20,7 +20,7 @@ export default new Router({
           name: 'home',
           component: resolve => require(['@/view/HomePage'], resolve),
           meta: {
-            title: '首页'
+            title: '中瀚物流服务公司官网'
           }
         }, {
           path: '/software',

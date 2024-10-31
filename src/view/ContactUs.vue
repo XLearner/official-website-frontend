@@ -5,6 +5,19 @@
       <div class="container-fuild ContactUs-container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6">
+            <div id="map" class="wow zoomIn">
+              <img src="../assets/img/guizhou_addr.png" />
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <div id="map" class="wow zoomIn">
+              <img src="../assets/img/shenzhen_addr.png" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
             <form class="form-horizontal" role="form">
               <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">姓名</label>
@@ -66,11 +79,6 @@
                 </div>
               </div>
             </form>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6">
-            <div id="map" class="wow zoomIn">
-              <img src="../assets/img/company_address.png" />
-            </div>
           </div>
         </div>
       </div>
@@ -146,11 +154,12 @@ export default {
 }
 #map img {
   display: block;
-  transform: translate(-220px, -175px);
+  width: 100%;
 }
 .row {
   margin-right: 0;
   margin-left: 0;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 997px) {
   .ContactUs-container {
