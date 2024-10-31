@@ -6,8 +6,14 @@
         </div>
         <div class="container">
             <div class="Service-container row">
-                <div class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp" v-for="(item, index) in serviceList"
-                    :key="index" @click="ServiceClick(item.id)">
+                <div 
+                    class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
+                    v-for="(item, index) in serviceList"
+                    :key="index" @click="ServiceClick(item.id)"
+                    :data-wow-delay="`${index * 0.03}s`"
+                    data-wow-iteration="1"
+
+                >
                     <div class="Service-item-wrapper">
                         <div class="Service-item-top">
                             <h4>{{ item.title }}</h4>
