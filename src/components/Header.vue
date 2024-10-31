@@ -16,27 +16,29 @@
       </div>
     </div>
     <!-- 电脑导航 -->
-    <div class="header-nav container hidden-xs">
-      <!-- 导航logo -->
-      <div class="header-nav-logo">
-        <a href="/"><img src="@/assets/img/logo.png" /></a>
+    <div class="header-nav hidden-xs" :style="dynStyle" :class="{ 'otherNav': otherNav }">
+      <div class="container">
+        <!-- 导航logo -->
+        <div class="header-nav-logo">
+          <a href="/"><img src="@/assets/img/logo_white.png" /></a>
+        </div>
+        <!-- 导航内容 -->
+        <ul class="header-nav-wrapper">
+          <li v-for="(item, index) in navList" :key="index" :class="index == navIndex ? 'active' : ''"
+            @click="navClick(index, item.name)">
+            <router-link :to="item.path">
+              {{ item.name }}
+              <span v-if="item.children.length > 0" class="glyphicon glyphicon-menu-down"></span>
+              <i class="underline"></i>
+            </router-link>
+            <dl v-if="item.children.length > 0">
+              <dt v-for="(i, n) in item.children" :key="n">
+                <router-link :to="i.path">{{ i.name }}</router-link>
+              </dt>
+            </dl>
+          </li>
+        </ul>
       </div>
-      <!-- 导航内容 -->
-      <ul class="header-nav-wrapper">
-        <li v-for="(item, index) in navList" :key="index" :class="index == navIndex ? 'active' : ''"
-          @click="navClick(index, item.name)">
-          <router-link :to="item.path">
-            {{ item.name }}
-            <span v-if="item.children.length > 0" class="glyphicon glyphicon-menu-down"></span>
-            <i class="underline"></i>
-          </router-link>
-          <dl v-if="item.children.length > 0">
-            <dt v-for="(i, n) in item.children" :key="n">
-              <router-link :to="i.path">{{ i.name }}</router-link>
-            </dt>
-          </dl>
-        </li>
-      </ul>
     </div>
     <!-- 手机导航 -->
     <div class="header-nav-m container-fuild visible-xs">
@@ -119,20 +121,47 @@ export default {
           path: "/contactus",
           children: []
         }
-      ]
+      ],
+      swiperHeight: 0,
+      trans: 0
     };
   },
   computed: {
     baseInfo() {
       return this.$store.state.baseInfo
+    },
+    otherNav() {
+      const navIndex = this.$store.state.navIndex;
+      return navIndex != 0
+    },
+    dynStyle() {
+      return {
+        backgroundColor: `rgba(8, 28, 72, ${this.trans})`,
+      }
     }
   },
   mounted() {
+    setTimeout(() => {
+      const swiper = document.querySelector('#swiper');
+      // console.log('height: ', swiper.offsetHeight)
+      if (swiper) {
+        this.swiperHeight = swiper.offsetHeight;
+      }
+      console.log(this.swiperHeight);
+
+      document.addEventListener('scroll', (e) => {
+        let scrollTop = document.documentElement.scrollTop;
+        // 当滚动到 120px 之后，头部 nav 北京色开始加深，当高度到80%轮播图时，达到100%
+        const startPoint = this.swiperHeight * 0.12;
+        this.trans = scrollTop < 120 ? 0 : Math.max(0, Math.min(scrollTop / (this.swiperHeight - startPoint), .9));
+      })
+    }, 100)
   },
   methods: {
     navClick(index, name) {
       this.navIndex = index;
       sessionStorage.setItem("navIndex", index);
+      this.$store.commit('saveNavIndex', index);
       this.menuName = name;
     },
     menuClick() {
@@ -158,6 +187,7 @@ export default {
   font-size: 12px;
   line-height: 50px;
   background: #f48a12;
+  display: none;
 }
 
 /* 顶部的图标 */
@@ -165,18 +195,50 @@ export default {
   margin: 0 8px;
 }
 
+.contain {
+  width: 80%;
+  margin: 0 auto;
+}
+
 /* 导航栏 */
 #header .header-nav {
-  height: 110px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-top: 10px;
+}
+
+#header .header-nav.otherNav {
+  position: relative;
+  background: rgb(8, 28, 72) !important;
+  padding: 30px 0;
+}
+
+#header .header-nav.otherNav .container {
+  border: 0;
+}
+
+/*#header .header-nav.otherNav .header-nav-wrapper>li>a {
+  color: #111;
+}*/
+
+.header-nav .container {
+  border-bottom: 2px solid #fff;
+  position: relative;
 }
 
 /* 导航栏logo */
 #header .header-nav .header-nav-logo {
-  display: flex;
   height: 100%;
-  float: left;
-  position: relative;
+  display: flex;
   align-items: center;
+  float: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
 }
 
 /* 导航栏logo图片 */
@@ -191,7 +253,7 @@ export default {
 }
 
 #header .header-nav .header-nav-wrapper {
-  line-height: 110px;
+  line-height: 60px;
   float: right;
   margin: 0;
   max-width: 800px;
@@ -206,7 +268,7 @@ export default {
 
 /* 导航栏 每个导航下面的 a 链接 */
 #header .header-nav .header-nav-wrapper>li>a {
-  color: #000;
+  color: #fff;
   font-size: 15px;
   font-weight: bold;
   padding: 15px 0;
