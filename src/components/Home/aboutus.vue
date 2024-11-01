@@ -1,20 +1,20 @@
 <template>
-    <div id="AboutUs" class="conatiner-fuild">
+    <div id="AboutUs" class="about-us">
         <div class="container">
-            <div class="AboutUs-title text-center">
+            <!-- <div class="AboutUs-title text-center">
                 <p>关于我们</p>
                 <p>ABOUT US</p>
-            </div>
+            </div> -->
             <div class="content-box">
                 <div class="txt-container">
-                    <div class="title">{{ baseInfo.name }}</div>
+                    <div class="title">关于 {{ baseInfo.name }}</div>
                     <div class="txt">{{ baseInfo.description }}</div>
-                    <div class="detail-btn">
+                    <div class="detail-btn btn">
                         <span @click="seeMoreCompanyInfo">查看详情</span>
                     </div>
                 </div>
                 <div class="img-box">
-                    <img :src="baseInfo.descImg" alt="公司图片" />
+                    <div class="txt">{{ baseInfo.description }}</div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,9 @@ export default {
 <style scoped>
 #AboutUs {
     background: #efefef;
-    padding: 100px;
+    padding: 480px 100px 0;
+    background-image: url('http://api.zhonghanlogistics.cn/photo/files-1711698864562.jpg');
+    background-size: 100%;
 }
 
 #AboutUs .AboutUs-title p {
@@ -66,8 +68,9 @@ export default {
     display: flex;
     box-shadow: 0 0 10px #cdcdcd;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 8px 8px 0 0;
     overflow: hidden;
+    padding: 10px;
 }
 
 #AboutUs .txt-container {
@@ -90,6 +93,7 @@ export default {
     color: #999;
     line-height: 2;
     font-size: 16px;
+    font-weight: 300;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -104,10 +108,29 @@ export default {
     border-left: 1px solid #cdcdcd;
     overflow: hidden;
     height: 380px;
+    padding: 20px;
 }
 
-#AboutUs .img-box img {
-    height: 100%;
+#AboutUs .img-box .txt {
+    color: #999;
+    line-height: 2;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.detail-btn {
+    position: relative
+}
+.detail-btn::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -3px;
+    top: 7px;
+    border: 8px solid transparent;
+    border-left-color: rgb(30, 44, 84);
+    
 }
 
 #AboutUs .detail-btn span {
