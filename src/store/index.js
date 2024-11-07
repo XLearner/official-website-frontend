@@ -13,7 +13,8 @@ const mutations = {
         state.baseInfo = payload
     },
     saveNavIndex(state, payload) {
-        state.navIndex = payload
+        state.navIndex = payload;
+        window.scrollTo(0, 0);
     }
 }
 

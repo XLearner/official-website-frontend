@@ -122,11 +122,14 @@ export default {
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
+    margin-bottom: 20px;
 }
 
 #NewsDetail .container {
     padding-bottom: 20px;
     min-height: 500px;
+    background: #fff;
+    border-radius: 5px;
 }
 
 ul.nav-tabs {

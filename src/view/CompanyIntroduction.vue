@@ -60,6 +60,7 @@ export default {
   padding: 100px 0;
   color: #808080;
   transition: all ease 0.5s;
+  background: #fff;
 }
 .CompanyIntroduction-container > div > p {
   font-size: 14px;

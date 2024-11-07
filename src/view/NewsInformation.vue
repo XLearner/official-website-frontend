@@ -119,10 +119,12 @@ export default {
 <style scoped>
 #NewsInformation {
     padding-bottom: 100px;
+    background: #f7f8f9;
 }
 
 .container-fuild {
     margin-bottom: 50px;
+    background: #fff;
 }
 
 .swiper-wrapper {
@@ -158,22 +160,24 @@ export default {
 .news-container .news-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px;
+    padding: 38px;
     margin: 20px 0;
-    border: 1px solid #efefef;
+    background-color: #fff;
     border-radius: 3px;
     cursor: pointer;
     transition: all .7s;
+    min-height: 200px;
 }
 
 .news-container .news-item:hover {
-    box-shadow: 0 0 5px #ddd;
+    box-shadow: 0 0 10px #ddd;
 }
 
 .news-container .img {
     width: 200px;
     overflow: hidden;
     margin-right: 10px;
+    max-height: 150px;
 }
 
 .news-container .img img {

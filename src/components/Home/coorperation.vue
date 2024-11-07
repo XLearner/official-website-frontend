@@ -74,7 +74,7 @@ export default {
 #customer {
     padding: 50px 0;
     box-sizing: border-box;
-    background: #efefef;
+    background: #f7f8f9;
     transition: all ease 0.6s;
 }
 
@@ -91,7 +91,6 @@ export default {
 
 #customer .customer-logo img {
     height: 138px;
-    border: 1px solid #ccc;
 }
 
 #customer .customer-yh img {
