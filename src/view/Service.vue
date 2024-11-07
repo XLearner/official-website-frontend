@@ -12,7 +12,6 @@
                     :key="index" @click="ServiceClick(item.id)"
                     :data-wow-delay="`${index * 0.03}s`"
                     data-wow-iteration="1"
-
                 >
                     <div class="Service-item-wrapper">
                         <div class="Service-item-top">
@@ -86,6 +85,8 @@ export default {
             //     }
             // })
             this.$router.push({ path: '/servicedetail/' + id})
+            sessionStorage.setItem("navIndex", 1);
+            this.$store.commit('saveNavIndex', 1);
         }
     }
 }

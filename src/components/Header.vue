@@ -71,9 +71,7 @@ export default {
   name: "Header",
   data() {
     return {
-      navIndex: sessionStorage.getItem("navIndex")
-        ? sessionStorage.getItem("navIndex")
-        : 0,
+      
       menuName: "首页",
       menuClass: "glyphicon glyphicon-menu-down",
       navList: [
@@ -138,6 +136,9 @@ export default {
       return {
         backgroundColor: `rgba(8, 28, 72, ${this.trans})`,
       }
+    },
+    navIndex() {
+      return this.$store.state.navIndex
     }
   },
   mounted() {

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="head ">
                 <h3 class="">中瀚物流新闻资讯</h3>
-                <div class="btn ">查看更多</div>
+                <div class="btn" @click="showMore">查看更多</div>
             </div>
             <div id="news_box" class="news-scroll">
                 <div class="swiper-container news-swiper hidden-xs">
@@ -13,7 +13,7 @@
                                 <div class="time">{{ item.date }}</div>
                                 <div class="tit">{{ item.title }}</div>
                                 <div class="txt">{{ clearTag(item.content) }}</div>
-                                <div class="btn">查看更多内容</div>
+                                <div class="btn" @click="showDetail(item.id)">查看更多内容</div>
                             </div>
                         </div>
                     </div>
@@ -107,6 +107,16 @@ export default {
                 str += element.innerText + '\n';
             }
             return str
+        },
+        showMore() {
+            this.$router.push("/newsinformation/");
+            sessionStorage.setItem("navIndex", 2);
+            this.$store.commit('saveNavIndex', 2);
+        },
+        showDetail(id) {
+            this.$router.push("/news/" + id);
+            sessionStorage.setItem("navIndex", 2);
+            this.$store.commit('saveNavIndex', 2);
         }
     }
 };
@@ -115,7 +125,7 @@ export default {
 <style scoped>
 .bottom-new {
     padding: 50px 0;
-    background: #efefef;
+    background: #f7f8f9;
 }
 
 .head {
@@ -146,7 +156,7 @@ export default {
 }
 
 .box .txt {
-    height: 136px;
+    height: 36px;
     line-height: 1.4;
     margin-bottom: 20px;
     color: #aaa;

@@ -50,6 +50,7 @@ export default {
 /* 为什么选择我们 */
 #whyChooseUs {
     padding: 100px;
+    background: #fff;
 }
 
 #whyChooseUs .row {

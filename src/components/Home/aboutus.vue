@@ -34,6 +34,8 @@ export default {
 
         seeMoreCompanyInfo() {
             this.$router.push("companyintroduction");
+            sessionStorage.setItem("navIndex", 3);
+            this.$store.commit('saveNavIndex', 3);
         }
     }
 }
@@ -42,9 +44,10 @@ export default {
 <style scoped>
 #AboutUs {
     background: #efefef;
-    padding: 480px 100px 0;
+    padding: 23% 0 0;
     background-image: url('http://api.zhonghanlogistics.cn/photo/files-1711698864562.jpg');
     background-size: 100%;
+    margin-bottom: 100px;
 }
 
 #AboutUs .AboutUs-title p {
@@ -71,6 +74,7 @@ export default {
     border-radius: 8px 8px 0 0;
     overflow: hidden;
     padding: 10px;
+    transform: translateY(100px);
 }
 
 #AboutUs .txt-container {

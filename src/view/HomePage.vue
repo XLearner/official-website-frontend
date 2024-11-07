@@ -25,6 +25,8 @@
         <div class="swiper-button-next"></div> -->
       </div>
     </div>
+    <!-- 为什么选择我们 -->
+    <WhyUs></WhyUs>
     <!-- 我们的服务 -->
      <OurServices />
 
@@ -47,8 +49,6 @@
     </div>
     <!-- 合作客户 -->
     <Coorperation />
-    <!-- 为什么选择我们 -->
-    <WhyUs></WhyUs>
     <!-- 关于我们 -->
     <AboutUs></AboutUs>
   </div>
