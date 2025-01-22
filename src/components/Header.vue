@@ -138,17 +138,15 @@ export default {
       }
     },
     navIndex() {
-      return this.$store.state.navIndex
+      return this.$store.state.navIndex || 0
     }
   },
   mounted() {
     setTimeout(() => {
       const swiper = document.querySelector('#swiper');
-      // console.log('height: ', swiper.offsetHeight)
       if (swiper) {
         this.swiperHeight = swiper.offsetHeight;
       }
-      console.log(this.swiperHeight);
 
       document.addEventListener('scroll', (e) => {
         let scrollTop = document.documentElement.scrollTop;
@@ -160,9 +158,7 @@ export default {
   },
   methods: {
     navClick(index, name) {
-      this.navIndex = index;
-      sessionStorage.setItem("navIndex", index);
-      this.$store.commit('saveNavIndex', index);
+      // this.navIndex = index;
       this.menuName = name;
     },
     menuClick() {

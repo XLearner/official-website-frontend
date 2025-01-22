@@ -1,34 +1,38 @@
 <template>
   <div id="HomePage">
     <!-- 轮播图 -->
-    <div id="swiper" class="container-fuild">
-      <div class="swiper-container banner-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index">
-            <img class="swiper-lazy" :data-src="item.img" alt="轮播图" />
-            <div class="swiper-lazy-preloader"></div>
-            <div class="swiper-slide-title">
-              <div class="txt container">
-                <h1>{{ item.title }}</h1>
-                <h2>{{ item.titleEng }}</h2>
-                <p>{{ item.content }}</p>
-                <p>{{ item.contentEng }}</p>
+    <div class="banner-box">
+      <video class="video-box" autoplay loop="true" width="100%" muted>
+        <source src="../assets/img/首页视频_副本.mp4" type="video/mp4" />
+      </video>
+      <div id="swiper" class="container-fuild">
+        <div class="swiper-container banner-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index">
+              <!-- <img class="swiper-lazy" :data-src="item.img" alt="轮播图" /> -->
+              <!-- <div class="swiper-lazy-preloader"></div> -->
+              <div class="swiper-slide-title">
+                <div class="txt container">
+                  <h1>{{ item.title }}</h1>
+                  <h2>{{ item.titleEng }}</h2>
+                  <p>{{ item.content }}</p>
+                  <p>{{ item.contentEng }}</p>
+                </div>
               </div>
             </div>
           </div>
+          <!-- 如果需要分页器 -->
+          <!-- <div class="swiper-pagination"></div> -->
+          <!-- 如果需要导航按钮 -->
+          <!-- <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div> -->
         </div>
-        <!-- 如果需要分页器 -->
-        <div class="swiper-pagination"></div>
-
-        <!-- 如果需要导航按钮 -->
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
       </div>
     </div>
     <!-- 为什么选择我们 -->
     <WhyUs></WhyUs>
     <!-- 我们的服务 -->
-     <OurServices />
+    <OurServices />
 
     <!-- 您身边的物流专家 -->
     <div id="contactUs" class="container-fuild text-center">
@@ -71,7 +75,7 @@ export default {
     return {
       swiperList: [],
       highlightList: [],
-      serverList: []
+      serverList: [],
     };
   },
   created() {
@@ -99,7 +103,7 @@ export default {
       .then(() => {
         new Swiper(".banner-swiper", {
           loop: true, // 循环模式选项
-          effect: "fade",
+          effect: "slide",
           //自动播放
           autoplay: {
             delay: 8000,
@@ -133,7 +137,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.baseInfo);
     /* wowjs动画 */
     var wow = new WOW({
       boxClass: "wow",
@@ -143,6 +146,31 @@ export default {
       live: true
     });
     wow.init();
+
+    const VideoRef = document.querySelector('video');
+    const swiperRef = document.querySelector('#swiper');
+
+    setTimeout(() => {
+      swiperRef.style.height = VideoRef.getBoundingClientRect().height + 'px';
+    }, 1000)
+
+    let wheelIndex = 0
+    document.addEventListener('wheel', () => {
+      if (wheelIndex > 0) {
+        return;
+      }
+      VideoRef.play();
+      wheelIndex++;
+    })
+    
+    let touchIndex = 0
+    document.addEventListener('touchStart', () => {
+      if (touchIndex > 0) {
+        return;
+      }
+      VideoRef.play();
+      touchIndex++;
+    })
   },
 };
 </script>
@@ -153,6 +181,15 @@ export default {
   width: 100%;
 }
 
+.banner-box {
+  position: relative;
+}
+#swiper.container-fuild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 /* 轮播图 */
 #swiper {
   height: 90vh;
@@ -180,7 +217,7 @@ export default {
   width: 100%;
   height: 100%;
   color: #fff;
-  background: rgba(51, 51, 51, 0.534);
+  background: rgba(51, 51, 51, 0.334);
   text-align: center;
   line-height: 80px;
 }
