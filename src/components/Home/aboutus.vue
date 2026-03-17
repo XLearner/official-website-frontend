@@ -45,7 +45,7 @@ export default {
 #AboutUs {
     background: #efefef;
     padding: 23% 0 0;
-    background-image: url('http://api.zhonghanlogistics.cn/photo/files-1711698864562.jpg');
+    background-image: url('http://api.zhonghanlogistics.cn/photo/files-1744972410380.jpg');
     background-size: 100%;
     margin-bottom: 100px;
 }

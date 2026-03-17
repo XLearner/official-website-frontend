@@ -76,7 +76,7 @@ export default {
 }
 
 #whyChooseUs .server-block {
-    padding: 50px 20px;
+    padding: 30px 20px;
     border: 1px solid #ccc;
     border-bottom: 5px solid #ccc;
     height: 100%;
@@ -84,7 +84,7 @@ export default {
 
 #whyChooseUs .server-block img {
     /* width: 48px; */
-    height: 100px;
+    height: 150px;
 }
 
 #whyChooseUs .server-block>p {
@@ -94,6 +94,7 @@ export default {
 
 #whyChooseUs .server-block>div {
     color: #ccc;
+    font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {

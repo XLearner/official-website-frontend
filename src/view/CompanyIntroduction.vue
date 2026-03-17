@@ -65,6 +65,7 @@ export default {
 .CompanyIntroduction-container > div > p {
   font-size: 14px;
   line-height: 2.5rem;
+  font-weight: 400;
 }
 @media screen and (max-width: 997px) {
   .CompanyIntroduction-container {

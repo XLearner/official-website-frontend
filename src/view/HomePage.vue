@@ -3,7 +3,7 @@
     <!-- 轮播图 -->
     <div class="banner-box">
       <video class="video-box" autoplay loop="true" width="100%" muted>
-        <source src="../assets/img/首页视频_副本.mp4" type="video/mp4" />
+        <source src="http://api.zhonghanlogistics.cn/photo/files-1744971621669.mp4" type="video/mp4" />
       </video>
       <div id="swiper" class="container-fuild">
         <div class="swiper-container banner-swiper">

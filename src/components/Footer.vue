@@ -136,5 +136,12 @@ export default {
   #footer {
     padding: 20px 20px 10px;
   }
+  
+  .content {
+    flex-direction: column;
+  }
+  .right-box {
+    padding: 0;
+  }
 }
 </style>
