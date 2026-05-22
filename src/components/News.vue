@@ -6,7 +6,7 @@
                 <div class="btn" @click="showMore">查看更多</div>
             </div>
             <div id="news_box" class="news-scroll">
-                <div class="swiper-container news-swiper hidden-xs">
+                <div class="swiper-container news-swiper">
                     <div class="swiper-wrapper ">
                         <div class="swiper-slide news-block" v-for="(item, index) in newsList" :key="index">
                             <div class="box">
@@ -36,7 +36,8 @@ export default {
     name: "News",
     data() {
         return {
-            newsList: []
+            newsList: [],
+            slideViewNum: 4
         };
     },
     computed: {
@@ -50,10 +51,10 @@ export default {
         gzAddr() {
             const arr = this.baseInfo.address.split('/');
             return arr.find(e => e.indexOf('贵州') >= 0)
-        }
+        },
     },
     mounted() {
-
+        this.$data.slideViewNum = window.innerWidth < 768 ? 2 : 4;
 
         apiGetNews().then((result) => {
 
@@ -70,7 +71,7 @@ export default {
         }).then(() => {
             new Swiper(".news-swiper", {
                 loop: false, // 循环模式选项
-                slidesPerView: 4,
+                slidesPerView: this.slideViewNum,
                 allowTouchMove: false,
                 //自动播放
                 autoplay: {
@@ -153,6 +154,7 @@ export default {
     height: 48px;
     margin-bottom: 20px;
     color: #777;
+    overflow: hidden;
 }
 
 .box .txt {

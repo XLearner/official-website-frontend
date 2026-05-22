@@ -4,15 +4,15 @@
             <h2>我们的服务</h2>
             <p>Our Service</p>
         </div>
-        <div class="title text-center">
+        <!-- <div class="title text-center">
             <h3>工业物流</h3>
             <p>Industrial Logistics</p>
-        </div>
+        </div> -->
         <div class="row ">
             <div class="ourService-container col-xs-12 col-sm-12 col-md-4" v-for="(item, index) in indServices">
                 <div class="box wow slideInUp" :data-wow-delay="`${index * 0.1}s`" data-wow-iteration="1">
                     <div class="ourService-img">
-                        <img class="img-responsive" :src="item.img" alt="我们的服务" />
+                        <img class="img-responsive" :src="$imageUrl(item.img)" alt="我们的服务" />
                     </div>
                     <div class="ctn">
                         <h4 class="ourService-title">
@@ -36,7 +36,7 @@
             <div class="ourService-container col-xs-12 col-sm-12 col-md-4" v-for="(item, index) in inteService">
                 <div class="box wow slideInUp" :data-wow-delay="`${index * 0.1}s`" data-wow-iteration="1">
                     <div class="ourService-img">
-                        <img class="img-responsive" :src="item.img" alt="我们的服务" />
+                        <img class="img-responsive" :src="$imageUrl(item.img)" alt="我们的服务" />
                     </div>
                     <div class="ctn">
                         <h4 class="ourService-title">

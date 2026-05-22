@@ -4,15 +4,15 @@
             <h3>我们的服务</h3>
             <p style="color:#b2b2b2">The Best Service You Never See</p>
         </div>
+        <div class="title text-center">
+            <h3>工业物流/制造业物流</h3>
+            <p>Industrial Logistics / Manufacturing Logistics</p>
+        </div>
         <div class="container">
             <div class="Service-container row">
-                <div 
-                    class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
-                    v-for="(item, index) in serviceList"
-                    :key="index" @click="ServiceClick(item.id)"
-                    :data-wow-delay="`${index * 0.03}s`"
-                    data-wow-iteration="1"
-                >
+                <div class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp" v-for="(item, index) in gongyeWuliu"
+                    :key="index" @click="ServiceClick(item.id)" :data-wow-delay="`${index * 0.03}s`"
+                    data-wow-iteration="1">
                     <div class="Service-item-wrapper">
                         <div class="Service-item-top">
                             <h4>{{ item.title }}</h4>
@@ -20,7 +20,30 @@
                             <p>{{ item.engTit }}</p>
                         </div>
                         <div class="Service-item-img">
-                            <img :src="item.img" alt="服务">
+                            <img :src="$imageUrl(item.img)" alt="服务">
+                        </div>
+                        <div class="Service-item-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title text-center">
+            <h3>国际物流</h3>
+            <p>International Logistics</p>
+        </div>
+        <div class="container">
+            <div class="Service-container row">
+                <div class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp" v-for="(item, index) in kuajingWuliu"
+                    :key="index" @click="ServiceClick(item.id)" :data-wow-delay="`${(index + gongyeWuliu.length) * 0.03}s`"
+                    data-wow-iteration="1">
+                    <div class="Service-item-wrapper">
+                        <div class="Service-item-top">
+                            <h4>{{ item.title }}</h4>
+                            <i></i>
+                            <p>{{ item.engTit }}</p>
+                        </div>
+                        <div class="Service-item-img">
+                            <img :src="$imageUrl(item.img)" alt="服务">
                         </div>
                         <div class="Service-item-border"></div>
                     </div>
@@ -60,13 +83,19 @@ export default {
                 //     eng_title: 'iOS App Dev',
                 //     img: require('@/assets/img/service4.jpg')
                 // }
-            ]
+            ],
+            gongyeWuliu: [],
+            kuajingWuliu: [],
         }
     },
     created() {
         apiGetRelative().then(res => {
             if (res.code >= 0) {
-                this.$data.serviceList = res.data;
+                // this.$data.serviceList = res.data;
+                debugger
+                this.$data.gongyeWuliu = res.data.filter(e => !(e.title.indexOf('专线') >= 0 || e.title.indexOf('国际') >= 0));
+                console.log(this.gongyeWuliu);;
+                this.$data.kuajingWuliu = res.data.filter(e => (e.title.indexOf('专线') >= 0 || e.title.indexOf('国际') >= 0));
             }
         }).then(() => {
             const wow = new WOW();
@@ -84,7 +113,7 @@ export default {
             //         id: id
             //     }
             // })
-            this.$router.push({ path: '/servicedetail/' + id})
+            this.$router.push({ path: '/servicedetail/' + id })
             sessionStorage.setItem("navIndex", 1);
             this.$store.commit('saveNavIndex', 1);
         }

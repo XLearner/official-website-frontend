@@ -49,14 +49,52 @@ Vue.component(GoTop.name, GoTop);
 
 Vue.config.productionTip = false;
 
-router.beforeEach((to, from, next) => {
+const navList = [
+  {
+    name: "首页",
+    path: "/home",
+  },
+  {
+    name: "相关服务",
+    path: "/service",
+  },
+  {
+    name: "新闻动态",
+    path: "/newsinformation",
+  },
+  {
+    name: "公司介绍",
+    path: "/companyintroduction",
+  },
+  {
+    name: "工作机会",
+    path: "/jobchance",
+  },
+  {
+    name: "联系我们",
+    path: "/contactus",
+  }
+]
+router.beforeEach((to, _, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   }
   next();
 });
+router.afterEach((to) => {
+  const index = navList.findIndex(i => to.path.indexOf(i.path) >=0);
+  sessionStorage.setItem("navIndex", index);
+  store.commit('saveNavIndex', index);
+})
 
 Vue.prototype.$store = store;
+
+Vue.prototype.$imageUrl = function (path) {
+  if (!path) return '';
+  if (/^https?:\/\//.test(path)) return path;
+  const baseUrl = this.$store.state.baseUrl || '';
+  return baseUrl + path;
+};
 
 new Vue({
   el: "#app",

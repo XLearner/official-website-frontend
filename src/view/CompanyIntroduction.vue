@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 wow zoomIn">
           <img
             class="img-responsive center-block"
-            :src="baseInfo.descImg"
+            :src="$imageUrl(baseInfo.descImg)"
           />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
@@ -65,6 +65,7 @@ export default {
 .CompanyIntroduction-container > div > p {
   font-size: 14px;
   line-height: 2.5rem;
+  font-weight: 400;
 }
 @media screen and (max-width: 997px) {
   .CompanyIntroduction-container {
