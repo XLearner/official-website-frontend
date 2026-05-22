@@ -8,7 +8,7 @@
                     <div class="swiper-slide customer-block" v-for="(item, index) in customerList" :key="index">
                         <div class="box">
                             <div class="customer-logo">
-                                <img class="center-block" :src="item.logo" alt="logo" />
+                                <img class="center-block" :src="$imageUrl(item.logo)" alt="logo" />
                             </div>
                         </div>
                     </div>

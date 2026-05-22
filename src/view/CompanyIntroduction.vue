@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 wow zoomIn">
           <img
             class="img-responsive center-block"
-            :src="baseInfo.descImg"
+            :src="$imageUrl(baseInfo.descImg)"
           />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">

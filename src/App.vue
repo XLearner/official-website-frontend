@@ -24,6 +24,7 @@ export default {
     apiGetBaseInfo("中瀚").then(res => {
       if (res.code >= 0) {
         store.commit('saveBaseInfo', res.data)
+        store.commit('saveBaseUrl', res.data.baseUrl || '')
       }
     })
 

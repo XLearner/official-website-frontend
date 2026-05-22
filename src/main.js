@@ -89,6 +89,13 @@ router.afterEach((to) => {
 
 Vue.prototype.$store = store;
 
+Vue.prototype.$imageUrl = function (path) {
+  if (!path) return '';
+  if (/^https?:\/\//.test(path)) return path;
+  const baseUrl = this.$store.state.baseUrl || '';
+  return baseUrl + path;
+};
+
 new Vue({
   el: "#app",
   router,

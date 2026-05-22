@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 const state = {
     baseInfo: {},
+    baseUrl: '',
     navIndex: 0,
 }
 
 const mutations = {
     saveBaseInfo(state, payload) {
         state.baseInfo = payload
+    },
+    saveBaseUrl(state, payload) {
+        state.baseUrl = payload
     },
     saveNavIndex(state, payload) {
         state.navIndex = payload;

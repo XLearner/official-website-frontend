@@ -12,7 +12,7 @@
                     <div class="server-block wow slideInUp"
                         onmouseenter="this.style.color='#28f';this.style.borderColor='#28f'"
                         onmouseleave="this.style.color='#666';this.style.borderColor='#ccc'">
-                        <img class="center-block" :src="item.img" alt="logo" />
+                        <img class="center-block" :src="$imageUrl(item.img)" alt="logo" />
                         <p class="text-center">{{ item.title }}</p>
                         <div class="text-center" v-html="item.description" onmouseenter="this.style.color='#28f'"
                             onmouseleave="this.style.color='#ccc'"></div>
@@ -140,5 +140,51 @@ export default {
     #whyChooseUs {
         padding: 20px 0;
     }
+}
+</style>
+
+<style>
+/* v-html 富文本内容基础样式还原 */
+#whyChooseUs .server-block p {
+    margin: 1em 0;
+    line-height: 1.6;
+}
+#whyChooseUs .server-block ul,
+#whyChooseUs .server-block ol {
+    list-style: auto;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+#whyChooseUs .server-block ul { list-style-type: disc; }
+#whyChooseUs .server-block ol { list-style-type: decimal; }
+#whyChooseUs .server-block li {
+    display: list-item;
+    margin: 0.3em 0;
+}
+#whyChooseUs .server-block h1,
+#whyChooseUs .server-block h2,
+#whyChooseUs .server-block h3,
+#whyChooseUs .server-block h4,
+#whyChooseUs .server-block h5,
+#whyChooseUs .server-block h6 {
+    margin: 0.83em 0;
+    font-weight: bold;
+}
+#whyChooseUs .server-block strong,
+#whyChooseUs .server-block b {
+    font-weight: bold;
+}
+#whyChooseUs .server-block em,
+#whyChooseUs .server-block i {
+    font-style: italic;
+}
+#whyChooseUs .server-block a {
+    color: #28f;
+    text-decoration: underline;
+}
+#whyChooseUs .server-block img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
 }
 </style>

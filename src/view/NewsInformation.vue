@@ -9,7 +9,7 @@
                 <div id="news_swiper" class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(item, index) in topNews" :key="index"  @click="toDetail(item.id)">
-                            <img class="swiper-lazy img" :data-src="item.outImg" alt="轮播图" />
+                            <img class="swiper-lazy img" :data-src="$imageUrl(item.outImg)" alt="轮播图" />
                             <div class="swiper-lazy-preloader"></div>
                             <div class="swiper-slide-title">
                                 <h1>{{ item.title }}</h1>
@@ -29,7 +29,7 @@
             <div class="news-container">
                 <div class="news-list">
                     <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="toDetail(item.id)">
-                        <div class="img"><img :src="item.outImg" alt="img"></div>
+                        <div class="img"><img :src="$imageUrl(item.outImg)" alt="img"></div>
                         <div class="content">
                             <div class="tit">{{ item.title }}</div>
                             <div class="time">{{ item.time }}</div>

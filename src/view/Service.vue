@@ -20,7 +20,7 @@
                             <p>{{ item.engTit }}</p>
                         </div>
                         <div class="Service-item-img">
-                            <img :src="item.img" alt="服务">
+                            <img :src="$imageUrl(item.img)" alt="服务">
                         </div>
                         <div class="Service-item-border"></div>
                     </div>
@@ -43,7 +43,7 @@
                             <p>{{ item.engTit }}</p>
                         </div>
                         <div class="Service-item-img">
-                            <img :src="item.img" alt="服务">
+                            <img :src="$imageUrl(item.img)" alt="服务">
                         </div>
                         <div class="Service-item-border"></div>
                     </div>

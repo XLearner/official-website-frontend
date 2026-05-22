@@ -20,7 +20,7 @@
                             {{ newsItem.title }}
                             <small>/ {{ newsItem.time }}</small>
                         </h2>
-                        <img v-show="ifLoaded" class="img" :src="newsItem.outImg" alt="示例图" @load="picReady">
+                        <img v-show="ifLoaded" class="img" :src="$imageUrl(newsItem.outImg)" alt="示例图" @load="picReady">
                         <div v-show="!ifLoaded" class="loading-img"><img src="../assets/img/img_oc.png" alt="占位图"></div>
                         <div class="txt" v-html="newsItem.content"></div>
                     </div>
@@ -282,9 +282,110 @@ ul.nav-tabs.affix {
 </style>
 
 <style>
-#NewsDetail .content-block ul,
-#NewsDetail .content-block ol {
+/* v-html 富文本内容基础样式还原 */
+#NewsDetail .txt h1,
+#NewsDetail .txt h2,
+#NewsDetail .txt h3,
+#NewsDetail .txt h4,
+#NewsDetail .txt h5,
+#NewsDetail .txt h6 {
+    margin: 0.83em 0;
+    font-weight: bold;
+    line-height: 1.4;
+}
+#NewsDetail .txt h1 { font-size: 2em; }
+#NewsDetail .txt h2 { font-size: 1.5em; }
+#NewsDetail .txt h3 { font-size: 1.17em; }
+#NewsDetail .txt h4 { font-size: 1em; }
+#NewsDetail .txt h5 { font-size: 0.83em; }
+#NewsDetail .txt h6 { font-size: 0.67em; }
+
+#NewsDetail .txt p {
+    margin: 1em 0;
+    line-height: 1.6;
+}
+
+#NewsDetail .txt ul,
+#NewsDetail .txt ol {
     list-style: auto;
-    margin-left: 20px;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+#NewsDetail .txt ul { list-style-type: disc; }
+#NewsDetail .txt ul ul { list-style-type: circle; }
+#NewsDetail .txt ul ul ul { list-style-type: square; }
+#NewsDetail .txt ol { list-style-type: decimal; }
+
+#NewsDetail .txt li {
+    display: list-item;
+    margin: 0.3em 0;
+}
+
+#NewsDetail .txt img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    margin: 0.5em 0;
+}
+
+#NewsDetail .txt table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    border: 1px solid #999;
+}
+#NewsDetail .txt table td,
+#NewsDetail .txt table th {
+    border: 1px solid #999;
+    padding: 8px 12px;
+    text-align: left;
+}
+#NewsDetail .txt table th {
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+#NewsDetail .txt a {
+    color: #28f;
+    text-decoration: underline;
+}
+
+#NewsDetail .txt strong,
+#NewsDetail .txt b {
+    font-weight: bold;
+}
+
+#NewsDetail .txt em,
+#NewsDetail .txt i {
+    font-style: italic;
+}
+
+#NewsDetail .txt blockquote {
+    margin: 1em 0;
+    padding: 10px 20px;
+    border-left: 4px solid #ddd;
+    background: #f9f9f9;
+    color: #666;
+}
+
+#NewsDetail .txt code {
+    font-family: monospace;
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+#NewsDetail .txt pre {
+    background: #f5f5f5;
+    padding: 12px 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1em 0;
+    line-height: 1.4;
+}
+#NewsDetail .txt pre code {
+    padding: 0;
+    background: transparent;
 }
 </style>
